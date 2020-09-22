@@ -1,0 +1,33 @@
+<%-include("partial/header")-%>
+  <h1><%=element.product%></h1>
+  <div class="row">
+    <div class="col-lg-6 ">
+      <img src="<%=element.img%>" alt="Product Photo" class="productPhoto">
+    </div>
+    <div class= "col-lg-6"  >
+      <div class="heading">
+        <h3>Product Specification</h3>
+      </div>
+      <div >
+        <p>Year of Purchase: <%=element.year%></p>
+        <p>Selling Price: <%=element.price%></p>
+        <%if(element.model){%>
+          <p>Brand and Model: <%=element.model%></p>
+        <%}%>
+        <%if(element.other){%>
+          <p>Other Specifications: <%=element.other%></p>
+        <%}%>
+      </div>
+      <div class="heading">
+        <h3>Seller Details</h3>
+      </div>
+      <div class="">
+        <p>Name: <%=element.name%></p>
+        <p>Email: <%=element.email%></p>
+        <p>Contact: <%=element.contact%></p>
+      </div>
+    </div>
+  </div>
+
+
+<%-include("partial/footer")-%>

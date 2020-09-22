@@ -1,0 +1,131 @@
+/* Navigation Bar */
+.navigation{
+  font-size: 20px;
+  padding: 15px 10%;
+}
+
+.dropdown-item:hover{
+  background-color: #c9d6df;
+}
+
+
+.automatic:hover .dropdown-menu {
+  display: block;
+}
+.nav-item{
+  padding-left: 15px;
+}
+
+.logo{
+  height: 40px;
+  width: 50px;
+  border-radius: 60%;
+}
+
+/* Home Page */
+
+ .home{
+  min-height: 100vh;
+  background-color: #3fc1c9;
+}
+
+.title{
+  padding: 15px 10%;
+}
+
+/* Features Section */
+
+.align{
+  padding: 15px 10%;
+  text-align: center;
+}
+
+#features {
+  position: relative;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature-box {
+  padding: 4.5%;
+}
+
+.icon {
+  color: #71c9ce;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #00adb5;
+}
+
+
+
+/* Show Section */
+.image{
+  width: 150px;
+  height: 150px;
+  display: block;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box{
+  text-align: center;
+  display: block inline;
+  margin-bottom: 25px;
+}
+
+.card:hover{
+  box-shadow: 10px 10px 8px 10px #888888;
+}
+
+/* .card-header{
+  background-color: #eaf6f6;
+} */
+
+.productPhoto{
+  height:500px;
+  width:450px;
+}
+
+.heading{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.main{
+  padding: 15px 10%;
+  position: relative;
+  min-height: 100vh;
+}
+body{
+  min-height: 100%;
+}
+
+/* form Section */
+.star{
+  color:red;
+}
+
+
+/* Footer Section */
+.footer {
+	position: relative;
+	text-align: center;
+  padding-top: 2%;
+  padding-bottom: 4%;
+	bottom: 0;
+	width: 100%;
+	height: 75px;
+	background-color: #1abc9c;
+}
+
+
+.footer marquee {
+	font-size: 14px;
+  color: #fff;
+}
