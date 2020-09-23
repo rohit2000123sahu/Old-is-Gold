@@ -8,7 +8,6 @@
   background-color: #c9d6df;
 }
 
-
 .automatic:hover .dropdown-menu {
   display: block;
 }
@@ -27,6 +26,12 @@
  .home{
   min-height: 100vh;
   background-color: #3fc1c9;
+  padding-top: 50px;
+}
+
+.caro{
+  height:700px;
+  width: 500px;
 }
 
 .title{

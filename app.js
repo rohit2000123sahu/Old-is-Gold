@@ -50,7 +50,7 @@ const Electronics = mongoose.model("Electronic",electronicsSchema);
 
 
 app.get("/sell/electronics",function(req,res){
-  res.render("electronics");
+  res.render("item",{itemName:"electronics"});
 });
 
 app.post("/sell/electronics",parser.single("image"),function(req,res){
@@ -83,15 +83,15 @@ app.post("/sell/electronics",parser.single("image"),function(req,res){
 app.get("/buy/electronics",function(req,res){
   Electronics.find({},function(err,electronicsArr){
     if(!err){
-        res.render("buyElectronics", {arr:electronicsArr});
+        res.render("buyItem", {arr:electronicsArr , itemName:"electronics"});
     }
   });
 });
 
 
-////Removing A Specific Product
+////Removing A Specific Electronic Product
 app.get("/remove/electronics",function(req,res){
-  res.render("removeElectronics");
+  res.render("login", {itemName:"electronics"});
 });
 
 app.post("/remove/electronics/verify",function(req,res){
@@ -118,7 +118,7 @@ app.post("/remove/electronics/verify",function(req,res){
           if(productsArr.length==0){
             res.render("noProducts");
           }else{
-            res.render("removeProducts",{arr:productsArr});
+            res.render("removeProducts",{arr:productsArr, itemName:"electronics"});
           }
         }
       });
@@ -136,7 +136,7 @@ app.get("/remove/electronics/:parameter",function(req,res){
   });
 });
 
-////Specific Product Details
+////Specific Electronic Product Details
 app.get("/buy/electronics/:parameter",function(req,res){
   const id = req.params.parameter;
   Electronics.findOne({_id:id},function(err,product){
@@ -145,6 +145,131 @@ app.get("/buy/electronics/:parameter",function(req,res){
     }
   });
 });
+
+
+// Add Cycle Product Section
+const cycleSchema = {
+  name:String,
+  email:String,
+  password:String,
+  contact:Number,
+  product:String,
+  year:Number,
+  price:String,
+  img:String,
+  model:String,
+  other:String,
+};
+
+const Cycle = mongoose.model("Cycle",cycleSchema);
+
+
+app.get("/sell/cycles",function(req,res){
+  res.render("item",{itemName:"cycles"});
+});
+
+app.post("/sell/cycles",parser.single("image"),function(req,res){
+  bcrpyt.hash(req.body.password,saltRounds,function(err,hash){
+    if(!err){
+      const item = new Cycle({
+        name:req.body.name,
+        email:req.body.email,
+        password:hash,
+        contact:req.body.number,
+        product:req.body.pName,
+        year:req.body.year,
+        price:req.body.price,
+        img:req.file.path,
+        model:req.body.model,
+        other:req.body.other
+      });
+      item.save(function(err){
+        if(err){
+          console.log(err);
+        }else{
+          res.render("success");
+        }
+      });
+    }
+  });
+});
+
+// Buy Cycle Product Section
+app.get("/buy/cycles",function(req,res){
+  Cycle.find({},function(err,cycleArr){
+    if(!err){
+        if(cycleArr.length==0){
+          res.render("noItem");
+        }else{
+          res.render("buyItem", {arr:cycleArr ,itemName:"cycles"});
+        }
+    }
+  });
+});
+
+
+////Removing A Specific Product
+app.get("/remove/cycles",function(req,res){
+  res.render("login", {itemName:"cycles"});
+});
+
+app.post("/remove/cycles/verify",function(req,res){
+  Cycle.findOne({email:req.body.email},function(err, foundUser){
+    if(err){
+      console.log(err);
+    }else{
+      if(foundUser){
+        bcrpyt.compare(req.body.password,foundUser.password,function(err,results){
+          if(results===false){
+            bcrpyt.compare(process.env.PASSWORD,foundUser.password,function(error,final){
+              if(final===false){
+                res.render("noUser");
+              }
+            });
+          }
+        });
+      }
+      else{
+        res.render("noUser");
+      }
+      Cycle.find({email:req.body.email},function(err,productsArr){
+        if(!err){
+          if(productsArr.length==0){
+            res.render("noProducts");
+          }else{
+            res.render("removeProducts",{arr:productsArr , itemName:"cycles"});
+          }
+        }
+      });
+    }
+  })
+});
+
+
+app.get("/remove/cycles/:parameter",function(req,res){
+  const id = req.params.parameter;
+  Cycle.findByIdAndRemove({_id:id},function(err){
+    if(!err){
+       res.render("removeSuccess");
+    }
+  });
+});
+
+////Specific Product Details
+app.get("/buy/cycles/:parameter",function(req,res){
+  const id = req.params.parameter;
+  Cycle.findOne({_id:id},function(err,product){
+    if(!err){
+       res.render("product",{element:product});
+    }
+  });
+});
+
+
+
+
+
+
 
 
 //Server Startup And Setup
