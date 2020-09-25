@@ -34,12 +34,24 @@
   <h4>Product Details</h4>
 
   <div class="form-group ">
-    <label for="productName"><span class="star">*</span>Product Name: </label>
+    <label for="productName"><span class="star">*</span>
+      <% if(itemName=="books"){ %>
+        Book Name:
+      <% } else {%>
+        Product Name:
+      <% } %>
+    </label>
     <input type="text" name="pName" id="productName" class="form-control col-lg-3 col-md-6" required="true">
   </div>
 
   <div class="form-group">
-    <label for="purchaseYear"><span class="star">*</span>Year of Purchase:</label>
+    <label for="purchaseYear"><span class="star">*</span>
+      <% if(itemName=="books"){ %>
+        Edition:
+      <% } else {%>
+        Year of Purchase:
+      <% } %>
+    </label>
     <input type="text" name="year" id="purchaseYear" class="form-control col-lg-3 col-md-6" required="true">
   </div>
 
@@ -49,8 +61,16 @@
   </div>
 
   <div class="form-group">
-    <label for="modelP">Brand and Model:</label>
-    <input type="text" name="model" id="modelP" class="form-control col-lg-3 col-md-6">
+    <label for="modelP"><span class="star">*</span>
+      <% if(itemName=="books"){ %>
+        Author and Publication:
+      <% } else if(itemName=="dress"){%>
+        Size:
+      <% } else{ %>
+        Model and Brand:
+      <% } %>
+    </label>
+    <input type="text" name="model" id="modelP" class="form-control col-lg-3 col-md-6" required="true">
   </div>
 
   <div class="form-group">
